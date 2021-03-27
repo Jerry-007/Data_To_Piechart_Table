@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 550px;
+  width: 1080px;
   height: 400px;
   transition: 0.2s;
 }
@@ -22,8 +22,7 @@ body {
 .custom-table {
   border: 3px solid #3f72af;
   color: #112d4e;
-  width: 550px;
-  height: 400px;
+  width: 600px;
   margin: 1.5rem auto 0rem auto;
   transition: 0.2s;
 }
