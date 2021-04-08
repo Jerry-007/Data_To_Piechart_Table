@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Video Played",
+        "description": "Fired when a video is played, along with the details of the event",
+        "violations": 10,
+        "total": 1020,
+        "last": "2hrs ago",
+        "params": [
+            {
+                "name": "title",
+                "description": ""
+            }
+        ]
+    },
+    {}
+]

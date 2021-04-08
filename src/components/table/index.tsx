@@ -5,10 +5,10 @@ import { ExpandableEventRow } from "../ExpandableEventRow";
 const CenterFlex = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	background-color: #f7f8fc;
-	height: 100vh;
+	min-height: 100vh;
 `;
 
 const TableOuter = styled.div`
@@ -17,6 +17,7 @@ const TableOuter = styled.div`
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	background-color: #fff;
 	width: 90vw;
+	margin: 3rem;
 `;
 
 const TableHeader = styled.thead`

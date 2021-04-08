@@ -1,84 +1,115 @@
 import { ExpandIcon } from "@components/icons/ExpandIcon";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
-
-const Row = styled.tr`
-	margin: 2rem 0;
-`;
+import { InlineForm } from "@components/InlineForm";
 
 const TD = styled.td`
 	padding: 0.5rem 10px;
 	text-align: left;
+	max-width: 150px;
 `;
 
 const OpenBox = styled.td`
 	text-align: center;
+	cursor: pointer;
+`;
+
+const TR = styled.tr`
+	&:nth-child(odd) {
+		background-color: #f7f7fc;
+	}
+
+	&:nth-child(even) {
+		background-color: #eff0f6;
+	}
+`;
+
+const FormElement = styled.div`
+	display: flex;
 `;
 
 export const ExpandableEventRow: React.FC = () => {
 	const [isExpanded, setExpanded] = useState(false);
 	const [height, setHeight] = useState("0px");
+	const [isFormOpen, setFormOpen] = useState(false);
 
 	function expand() {
 		setExpanded(val => !val);
 		setHeight(h => (h === "0px" ? "400px" : "0px"));
+		if (isFormOpen) setFormOpen(false);
+	}
+
+	function clickOpenFormHandler() {
+		setFormOpen(true);
 	}
 
 	return (
 		<>
-			<Row>
+			<tr>
 				<OpenBox onClick={expand}>
 					<div className={`${styles.icon} ${isExpanded && styles.rotate}`}>
 						<ExpandIcon />
 					</div>
 				</OpenBox>
 				<TD>Video Played</TD>
-				<TD>Description</TD>
-				<TD>1010</TD>
+				<TD>Fired when a video is played, along with the details of the event</TD>
+				<TD>10</TD>
 				<TD>1020</TD>
 				<TD>2hrs ago</TD>
-			</Row>
+			</tr>
 			<tr>
-				<TD></TD>
-				<TD colSpan="5">
+				<TD isExpanded={isExpanded}></TD>
+				<TD colSpan="5" isExpanded={isExpanded}>
 					<div style={{ maxHeight: `${height}`, overflow: "hidden" }} className={styles.expand}>
-						<Table striped borderless>
+						<Table borderless>
 							<tbody>
-								<tr>
+								<TR>
 									<td>Title</td>
 									<td>Add a description here</td>
 									<td>test@test123.com</td>
 									<td>10</td>
 									<td>Optional</td>
-								</tr>
-								<tr>
+								</TR>
+								<TR>
 									<td>Description</td>
 									<td>Add a description here</td>
 									<td>test@test456.com</td>
 									<td>10</td>
 									<td>Optional</td>
-								</tr>
-								<tr>
+								</TR>
+								<TR>
 									<td>Duration</td>
 									<td>Add a description here</td>
 									<td>test@test789.com</td>
 									<td>10</td>
 									<td>Optional</td>
-								</tr>
-								<tr>
+								</TR>
+								<TR>
 									<td>Duration played</td>
 									<td>Add a description here</td>
 									<td>test@test789.com</td>
 									<td>10</td>
 									<td>Optional</td>
-								</tr>
-								<tr>
-									<td colSpan={5}>Add Parameter</td>
-								</tr>
+								</TR>
+								<TR>
+									<td colSpan={5} onClick={clickOpenFormHandler}>
+										<FormElement>
+											{!isFormOpen ? (
+												"+ Add parameter"
+											) : (
+												<>
+													<InlineForm />
+													<Button variant="danger">X</Button>
+												</>
+											)}
+										</FormElement>
+									</td>
+								</TR>
 							</tbody>
 						</Table>
+						{isFormOpen && <p>Press enter to submit form</p>}
 					</div>
 				</TD>
 			</tr>
