@@ -45,8 +45,8 @@ export const ExpandableEventRow: React.FC = () => {
 	const [height, setHeight] = useState("0px");
 	// state of form being open or not
 	const [isFormOpen, setFormOpen] = useState(false);
-	// state of form data
-	const [formData, setFormData] = useState({ title: "" });
+	// define form state
+	const [formState, setFormState] = useState({ name: "", description: "", select: "0", optional: false });
 
 	function expand() {
 		setExpanded(val => !val);
@@ -69,8 +69,18 @@ export const ExpandableEventRow: React.FC = () => {
 		// get data and add it to the end of the list
 	}
 
-	function onChangeHandler(e) {
-		console.log(e);
+	function handleEventChange(e) {
+		setFormState(state => ({
+			...state,
+			[e.target.name]: e.target.value,
+		}));
+	}
+
+	function onCheckedChange() {
+		setFormState(prevState => ({
+			...prevState,
+			optional: !prevState.optional,
+		}));
 	}
 
 	return (
@@ -132,8 +142,9 @@ export const ExpandableEventRow: React.FC = () => {
 												<>
 													<AddEventForm
 														onSubmit={onSubmit}
-														formData={formData}
-														onChangeHandler={onChangeHandler}
+														formState={formState}
+														handleEventChange={handleEventChange}
+														onCheckedChange={onCheckedChange}
 													/>
 													<ButtonWrapper>
 														<Button variant="danger" onClick={closeFormHandler}>

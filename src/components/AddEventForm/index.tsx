@@ -1,32 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, FormGroup, Col } from "react-bootstrap";
 
-interface FormData {
-	title: string;
+interface FormState {
+	name: string;
+	description: string;
+	select: string;
+	optional: boolean;
 }
 
 export const AddEventForm: React.FC<{
 	onSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
-	formData: FormData;
-	onChangeHandler: (event) => void;
-}> = () => {
-	// define form state
-	const [formState, setFormState] = useState({ name: "", description: "", select: 0, optional: false });
-
-	function handleEventChange(e) {
-		setFormState(state => ({
-			...state,
-			[e.target.name]: e.target.value,
-		}));
-	}
-
-	function onCheckedChange(e) {
-		setFormState(prevState => ({
-			...prevState,
-			optional: !prevState.optional,
-		}));
-	}
-
+	formState: FormState;
+	handleEventChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onCheckedChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ formState, handleEventChange, onCheckedChange }) => {
 	return (
 		<Form>
 			<h4>Enter parameter details</h4>
