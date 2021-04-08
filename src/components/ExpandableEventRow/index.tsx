@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
-import { InlineForm } from "@components/InlineForm";
+import { AddEventForm } from "@components/AddEventForm";
 
+// styled components here
 const TD = styled.td`
 	padding: 0.5rem 10px;
 	text-align: left;
@@ -27,13 +28,25 @@ const TR = styled.tr`
 `;
 
 const FormElement = styled.div`
-	display: flex;
+	position: relative;
+`;
+
+const ButtonWrapper = styled.div`
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
 `;
 
 export const ExpandableEventRow: React.FC = () => {
+	// state to control expansion of accordion
 	const [isExpanded, setExpanded] = useState(false);
+	// state of the height of the content of the accordion
 	const [height, setHeight] = useState("0px");
+	// state of form being open or not
 	const [isFormOpen, setFormOpen] = useState(false);
+	// state of form data
+	const [formData, setFormData] = useState({ title: "" });
 
 	function expand() {
 		setExpanded(val => !val);
@@ -43,6 +56,21 @@ export const ExpandableEventRow: React.FC = () => {
 
 	function clickOpenFormHandler() {
 		setFormOpen(true);
+		setHeight(h => parseInt(h.slice(0, h.length - 2)) + 200 + "px");
+	}
+
+	function closeFormHandler() {
+		setFormOpen(false);
+		setHeight(h => parseInt(h.slice(0, h.length - 2)) - 200 + "px");
+	}
+
+	function onSubmit(e) {
+		console.log(e);
+		// get data and add it to the end of the list
+	}
+
+	function onChangeHandler(e) {
+		console.log(e);
 	}
 
 	return (
@@ -68,40 +96,50 @@ export const ExpandableEventRow: React.FC = () => {
 								<TR>
 									<td>Title</td>
 									<td>Add a description here</td>
-									<td>test@test123.com</td>
+									<td>{"# Number ( 0 < N < 100)"}</td>
 									<td>10</td>
 									<td>Optional</td>
 								</TR>
 								<TR>
 									<td>Description</td>
 									<td>Add a description here</td>
-									<td>test@test456.com</td>
+									<td>{"aA Text"}</td>
 									<td>10</td>
 									<td>Optional</td>
 								</TR>
 								<TR>
 									<td>Duration</td>
 									<td>Add a description here</td>
-									<td>test@test789.com</td>
+									<td>{"# Integer ( > 0 )"}</td>
 									<td>10</td>
 									<td>Optional</td>
 								</TR>
 								<TR>
 									<td>Duration played</td>
 									<td>Add a description here</td>
-									<td>test@test789.com</td>
+									<td>{"aA Text"}</td>
 									<td>10</td>
 									<td>Optional</td>
 								</TR>
 								<TR>
-									<td colSpan={5} onClick={clickOpenFormHandler}>
+									<td colSpan={5}>
 										<FormElement>
 											{!isFormOpen ? (
-												"+ Add parameter"
+												<span onClick={clickOpenFormHandler} className={styles.add}>
+													{"+ Add parameter"}
+												</span>
 											) : (
 												<>
-													<InlineForm />
-													<Button variant="danger">X</Button>
+													<AddEventForm
+														onSubmit={onSubmit}
+														formData={formData}
+														onChangeHandler={onChangeHandler}
+													/>
+													<ButtonWrapper>
+														<Button variant="danger" onClick={closeFormHandler}>
+															X
+														</Button>
+													</ButtonWrapper>
 												</>
 											)}
 										</FormElement>
@@ -109,7 +147,6 @@ export const ExpandableEventRow: React.FC = () => {
 								</TR>
 							</tbody>
 						</Table>
-						{isFormOpen && <p>Press enter to submit form</p>}
 					</div>
 				</TD>
 			</tr>

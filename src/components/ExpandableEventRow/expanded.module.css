@@ -10,3 +10,7 @@
 .rotate {
 	transform: rotateZ(0deg);
 }
+
+.add {
+	cursor: pointer;
+}
