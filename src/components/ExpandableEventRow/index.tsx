@@ -5,6 +5,13 @@ import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
 import { AddEventForm } from "@components/AddEventForm";
 
+interface FormState {
+	name: string;
+	description: string;
+	select: string;
+	optional: boolean;
+}
+
 // styled components here
 const TD = styled.td`
 	padding: 0.5rem 10px;
@@ -38,6 +45,13 @@ const ButtonWrapper = styled.div`
 	right: 0;
 `;
 
+const initFormState: FormState = {
+	name: "",
+	description: "",
+	select: "0",
+	optional: false,
+};
+
 export const ExpandableEventRow: React.FC = () => {
 	// state to control expansion of accordion
 	const [isExpanded, setExpanded] = useState(false);
@@ -51,7 +65,10 @@ export const ExpandableEventRow: React.FC = () => {
 	function expand() {
 		setExpanded(val => !val);
 		setHeight(h => (h === "0px" ? "400px" : "0px"));
-		if (isFormOpen) setFormOpen(false);
+		if (isFormOpen) {
+			setFormOpen(false);
+			setFormState(initFormState);
+		}
 	}
 
 	function clickOpenFormHandler() {
@@ -62,6 +79,7 @@ export const ExpandableEventRow: React.FC = () => {
 	function closeFormHandler() {
 		setFormOpen(false);
 		setHeight(h => parseInt(h.slice(0, h.length - 2)) - 200 + "px");
+		setFormState(initFormState);
 	}
 
 	function onSubmit(e) {
