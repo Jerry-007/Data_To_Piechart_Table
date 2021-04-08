@@ -5,6 +5,7 @@ import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
 import { AddEventForm } from "@components/AddEventForm";
 
+// structure of form state
 interface FormState {
 	name: string;
 	description: string;
@@ -45,6 +46,7 @@ const ButtonWrapper = styled.div`
 	right: 0;
 `;
 
+// initial form state
 const initFormState: FormState = {
 	name: "",
 	description: "",
