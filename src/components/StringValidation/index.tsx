@@ -1,8 +1,9 @@
+import { Validation } from "@components/ExpandableEventRow";
 import React from "react";
 import { Form, Col, FormGroup } from "react-bootstrap";
 
 export const StringValidation: React.FC<{
-	validation: any;
+	validation: Validation;
 	handleValidationTypeChange: (event) => void;
 	handleValidationChange: (event) => void;
 }> = ({ validation, handleValidationTypeChange, handleValidationChange }) => {

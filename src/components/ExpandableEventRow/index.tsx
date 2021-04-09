@@ -5,13 +5,24 @@ import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
 import { AddParameterForm } from "@components/AddParameterForm";
 
+// structure of validation state
+export interface Validation {
+	type: string;
+	predetermined: string;
+	customType: string;
+	customValue: string;
+	numberType: string;
+	numberValue: number;
+	customregex: string;
+}
+
 // structure of form state
 export interface FormState {
 	name: string;
 	description: string;
 	select: string;
 	optional: boolean;
-	validation: any;
+	validation: Validation;
 }
 
 // styled components here
