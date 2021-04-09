@@ -1,0 +1,36 @@
+import React from "react";
+import { Form, Col, FormGroup } from "react-bootstrap";
+
+export const NumberValidation: React.FC<{ validation: any; handleValidationChange: (event) => void }> = ({
+	validation,
+	handleValidationChange,
+}) => {
+	return (
+		<>
+			<Form.Row>
+				<Col>
+					<Form.Control as="select" name="numberType" custom value={validation.numberType} onChange={handleValidationChange}>
+						<option value={0}>Greater than</option>
+						<option value={1}>Greater than equal to</option>
+						<option value={2}>Less than</option>
+						<option value={3}>Less than equal to</option>
+						<option value={4}>Between</option>
+						<option value={5}>Equals</option>
+						<option value={6}>Custom Regex</option>
+					</Form.Control>
+				</Col>
+				<Col>
+					<FormGroup>
+						<Form.Control
+							type="number"
+							name="numberValue"
+							placeholder="enter the number here"
+							value={validation.numberValue}
+							onChange={handleValidationChange}
+						/>
+					</FormGroup>
+				</Col>
+			</Form.Row>
+		</>
+	);
+};

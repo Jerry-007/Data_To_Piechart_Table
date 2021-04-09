@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
-import { AddEventForm } from "@components/AddEventForm";
+import { AddParameterForm } from "@components/AddParameterForm";
 
 // structure of form state
-interface FormState {
+export interface FormState {
 	name: string;
 	description: string;
 	select: string;
 	optional: boolean;
+	validation: any;
 }
 
 // styled components here
@@ -52,6 +53,15 @@ const initFormState: FormState = {
 	description: "",
 	select: "0",
 	optional: false,
+	validation: {
+		type: "predetermined",
+		predetermined: "0",
+		customType: "0",
+		customValue: "",
+		numberType: "0",
+		numberValue: 0,
+		customregex: "",
+	},
 };
 
 export const ExpandableEventRow: React.FC = () => {
@@ -62,11 +72,11 @@ export const ExpandableEventRow: React.FC = () => {
 	// state of form being open or not
 	const [isFormOpen, setFormOpen] = useState(false);
 	// define form state
-	const [formState, setFormState] = useState({ name: "", description: "", select: "0", optional: false });
+	const [formState, setFormState] = useState<FormState>(initFormState);
 
 	function expand() {
 		setExpanded(val => !val);
-		setHeight(h => (h === "0px" ? "400px" : "0px"));
+		setHeight(h => (h === "0px" ? "1000px" : "0px"));
 		if (isFormOpen) {
 			setFormOpen(false);
 			setFormState(initFormState);
@@ -89,17 +99,35 @@ export const ExpandableEventRow: React.FC = () => {
 		// get data and add it to the end of the list
 	}
 
+	// changing state for name and type
 	function handleEventChange(e) {
 		setFormState(state => ({
 			...state,
 			[e.target.name]: e.target.value,
+			validation: initFormState.validation,
 		}));
 	}
 
+	// changing state for checkbox named optional
 	function onCheckedChange() {
 		setFormState(prevState => ({
 			...prevState,
 			optional: !prevState.optional,
+		}));
+	}
+
+	// changing state for validation type between predefined and custom
+	function handleValidationTypeChange(e) {
+		setFormState(prevState => ({
+			...prevState,
+			validation: { ...prevState.validation, type: e.target.value },
+		}));
+	}
+
+	function handleValidationChange(e) {
+		setFormState(prevState => ({
+			...prevState,
+			validation: { ...prevState.validation, [e.target.name]: e.target.value },
 		}));
 	}
 
@@ -160,11 +188,13 @@ export const ExpandableEventRow: React.FC = () => {
 												</span>
 											) : (
 												<>
-													<AddEventForm
+													<AddParameterForm
 														onSubmit={onSubmit}
 														formState={formState}
 														handleEventChange={handleEventChange}
 														onCheckedChange={onCheckedChange}
+														handleValidationTypeChange={handleValidationTypeChange}
+														handleValidationChange={handleValidationChange}
 													/>
 													<ButtonWrapper>
 														<Button variant="danger" onClick={closeFormHandler}>
