@@ -23,6 +23,7 @@ export interface FormState {
 	select: string;
 	optional: boolean;
 	validation: Validation;
+	validate: boolean;
 }
 
 // styled components here
@@ -64,6 +65,7 @@ const initFormState: FormState = {
 	description: "",
 	select: "0",
 	optional: false,
+	validate: true,
 	validation: {
 		type: "predetermined",
 		predetermined: "0",
@@ -106,24 +108,31 @@ export const ExpandableEventRow: React.FC = () => {
 	}
 
 	function onSubmit(e) {
-		console.log(e);
+		e.preventDefault();
 		// get data and add it to the end of the list
+		console.log(formState);
 	}
 
 	// changing state for name and type
 	function handleEventChange(e) {
+		if (e.target.name === "select")
+			return setFormState(state => ({
+				...state,
+				[e.target.name]: e.target.value,
+				validation: initFormState.validation,
+			}));
+
 		setFormState(state => ({
 			...state,
 			[e.target.name]: e.target.value,
-			validation: initFormState.validation,
 		}));
 	}
 
-	// changing state for checkbox named optional
-	function onCheckedChange() {
+	// changing state for checkbox named optional and validate
+	function onCheckedChange(e) {
 		setFormState(prevState => ({
 			...prevState,
-			optional: !prevState.optional,
+			[e.target.name]: !prevState[e.target.name],
 		}));
 	}
 
@@ -131,7 +140,7 @@ export const ExpandableEventRow: React.FC = () => {
 	function handleValidationTypeChange(e) {
 		setFormState(prevState => ({
 			...prevState,
-			validation: { ...prevState.validation, type: e.target.value },
+			validation: { ...initFormState.validation, type: e.target.value },
 		}));
 	}
 
