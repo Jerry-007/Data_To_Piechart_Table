@@ -1,9 +1,9 @@
 import { ExpandIcon } from "@components/icons/ExpandIcon";
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
 import { AddParameterForm } from "@components/AddParameterForm";
+import { TD, TR, OpenBox, FormElement, ButtonWrapper } from "../../styles/tableStyles";
 
 // structure of validation state
 export interface Validation {
@@ -25,39 +25,6 @@ export interface FormState {
 	validation: Validation;
 	validate: boolean;
 }
-
-// styled components here
-const TD = styled.td`
-	padding: 0.5rem 10px;
-	text-align: left;
-	max-width: 150px;
-`;
-
-const OpenBox = styled.td`
-	text-align: center;
-	cursor: pointer;
-`;
-
-const TR = styled.tr`
-	&:nth-child(odd) {
-		background-color: #f7f7fc;
-	}
-
-	&:nth-child(even) {
-		background-color: #eff0f6;
-	}
-`;
-
-const FormElement = styled.div`
-	position: relative;
-`;
-
-const ButtonWrapper = styled.div`
-	display: inline-block;
-	position: absolute;
-	top: 0;
-	right: 0;
-`;
 
 // initial form state
 const initFormState: FormState = {
