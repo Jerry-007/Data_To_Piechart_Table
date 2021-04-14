@@ -1,11 +1,33 @@
 import React from "react";
 import { Form, Col, FormGroup } from "react-bootstrap";
 import { Validation } from "../ExpandableEventRow";
+import ChipInput from "material-ui-chip-input";
 
 export const NumberValidation: React.FC<{ validation: Validation; handleValidationChange: (event) => void }> = ({
 	validation,
 	handleValidationChange,
 }) => {
+	function handleAdd(chip) {
+		// hacking the event parameter to change state
+		handleValidationChange({
+			target: {
+				name: "numberChips",
+				value: [...validation.numberChips, chip],
+			},
+		});
+	}
+
+	function handleDelete(val, index) {
+		const newChips = validation.numberChips.filter(chip => chip !== val);
+		// hacking the event parameter to change state
+		handleValidationChange({
+			target: {
+				name: "numberChips",
+				value: newChips,
+			},
+		});
+	}
+
 	return (
 		<>
 			<Form.Row>
@@ -20,7 +42,7 @@ export const NumberValidation: React.FC<{ validation: Validation; handleValidati
 						<option value={6}>Custom Regex</option>
 					</Form.Control>
 				</Col>
-				{validation.numberType !== "4" && (
+				{validation.numberType !== "4" && validation.numberType !== "5" && (
 					<Col>
 						<FormGroup>
 							<Form.Control
@@ -58,6 +80,24 @@ export const NumberValidation: React.FC<{ validation: Validation; handleValidati
 							</FormGroup>
 						</Col>
 					</>
+				)}
+				{validation.numberType === "5" && (
+					<Col>
+						<ChipInput
+							onAdd={chips => handleAdd(chips)}
+							value={validation.stringChips}
+							classes={{
+								root: "form-control px-2",
+								helperText: "border-0",
+								chip: "badge",
+							}}
+							newChipKeyCodes={[188]}
+							onDelete={(...params) => handleDelete(...params)}
+						/>
+						{validation.customType == "3" && (
+							<p className="text-muted">Press comma to separate values if passing multiple values</p>
+						)}
+					</Col>
 				)}
 			</Form.Row>
 		</>

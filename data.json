@@ -48,10 +48,11 @@
                     "isValidation": true,
                     "type": "number",
                     "paramViolations": 10,
-                    "between": {
-                        "min": 20,
-                        "max": 1200
-                    }
+                    "equals": [
+                        "20",
+                        "69",
+                        "45"
+                    ]
                 }
             },
             {
@@ -63,10 +64,7 @@
                     "isValidation": true,
                     "type": "number",
                     "paramViolations": 20,
-                    "between": {
-                        "min": 0,
-                        "max": 1200
-                    }
+                    "lesserEqual": "10"
                 }
             },
             {

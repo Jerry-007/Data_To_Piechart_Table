@@ -13,6 +13,8 @@ export interface Validation {
 	customValue: string;
 	numberType: string;
 	numberValue: string;
+	numberChips: Array<string>;
+	stringChips: Array<string>;
 	numberUpperLimit: string;
 	numberLowerLimit: string;
 	customregex: string;
@@ -45,6 +47,8 @@ const initFormState: FormState = {
 		numberUpperLimit: "10",
 		numberLowerLimit: "0",
 		customregex: "",
+		numberChips: [],
+		stringChips: [],
 	},
 };
 
@@ -167,7 +171,17 @@ export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 
 			// TODO: cover all the remaining edge cases of validation
 			if (validation["between"]) {
-				paramString += `( ${validation["between"].min} <= num <= ${validation["between"].max} )`;
+				paramString += ` ( ${validation["between"].min} <= num <= ${validation["between"].max} )`;
+			} else if (validation["greater"]) {
+				paramString += ` (> ${validation["greater"]})`;
+			} else if (validation["greaterEqual"]) {
+				paramString += ` (>= ${validation["greaterEqual"]})`;
+			} else if (validation["lesser"]) {
+				paramString += ` (< ${validation["lesser"]})`;
+			} else if (validation["lesserEqual"]) {
+				paramString += ` (<= ${validation["lesserEqual"]})`;
+			} else if (validation["equals"]) {
+				paramString += ` (= [${validation["equals"].join("|")}])`;
 			}
 		} else if (validation.type == "boolean") {
 			paramString = "Boolean";
