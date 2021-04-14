@@ -20,17 +20,45 @@ export const NumberValidation: React.FC<{ validation: Validation; handleValidati
 						<option value={6}>Custom Regex</option>
 					</Form.Control>
 				</Col>
-				<Col>
-					<FormGroup>
-						<Form.Control
-							type="number"
-							name="numberValue"
-							placeholder="enter the number here"
-							value={validation.numberValue}
-							onChange={handleValidationChange}
-						/>
-					</FormGroup>
-				</Col>
+				{validation.numberType !== "4" && (
+					<Col>
+						<FormGroup>
+							<Form.Control
+								type="number"
+								name="numberValue"
+								placeholder="enter the number here"
+								value={validation.numberValue}
+								onChange={handleValidationChange}
+							/>
+						</FormGroup>
+					</Col>
+				)}
+				{validation.numberType === "4" && (
+					<>
+						<Col>
+							<FormGroup>
+								<Form.Control
+									type="number"
+									name="numberLowerLimit"
+									placeholder="enter the number here"
+									value={validation.numberLowerLimit}
+									onChange={handleValidationChange}
+								/>
+							</FormGroup>
+						</Col>
+						<Col>
+							<FormGroup>
+								<Form.Control
+									type="number"
+									name="numberUpperLimit"
+									placeholder="enter the number here"
+									value={validation.numberUpperLimit}
+									onChange={handleValidationChange}
+								/>
+							</FormGroup>
+						</Col>
+					</>
+				)}
 			</Form.Row>
 		</>
 	);

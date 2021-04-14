@@ -12,7 +12,9 @@ export interface Validation {
 	customType: string;
 	customValue: string;
 	numberType: string;
-	numberValue: number;
+	numberValue: string;
+	numberUpperLimit: string;
+	numberLowerLimit: string;
 	customregex: string;
 }
 
@@ -39,7 +41,9 @@ const initFormState: FormState = {
 		customType: "0",
 		customValue: "",
 		numberType: "0",
-		numberValue: 0,
+		numberValue: "0",
+		numberUpperLimit: "10",
+		numberLowerLimit: "0",
 		customregex: "",
 	},
 };
