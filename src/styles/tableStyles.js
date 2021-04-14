@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+// TODO: make tables responsive for different width
+// TODO: add variable media query breakpoints to account for changes
+
 // center the child div by giving the div a display: flex;
 export const CenterFlex = styled.div`
 	display: flex;

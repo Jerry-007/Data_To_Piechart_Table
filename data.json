@@ -1,16 +1,283 @@
 [
     {
-        "title": "Video Played",
+        "id": 1,
+        "title": "Video played",
         "description": "Fired when a video is played, along with the details of the event",
-        "violations": 10,
-        "total": 1020,
-        "last": "2hrs ago",
+        "violations": 11,
+        "totalViolations": 1020,
+        "last": "Wed, 14 Apr 2021 06:42:37 GMT",
         "params": [
             {
-                "name": "title",
-                "description": ""
+                "id": 1,
+                "name": "Title",
+                "description": "Add a description here",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "string",
+                    "paramViolations": 10,
+                    "predetermined": null,
+                    "custom": {
+                        "contains": null,
+                        "starts": null,
+                        "ends": null,
+                        "equals": null,
+                        "regex": "\\w+"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "name": "Description",
+                "description": "Add description",
+                "optional": true,
+                "validation": {
+                    "isValidation": false,
+                    "type": "string",
+                    "paramViolations": 10,
+                    "predetermined": null,
+                    "custom": null
+                }
+            },
+            {
+                "id": 3,
+                "name": "Duration",
+                "description": "Total length of the video in seconds",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "number",
+                    "paramViolations": 10,
+                    "between": {
+                        "min": 20,
+                        "max": 1200
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "name": "Duration Played",
+                "description": "The total duration video played by user in seconds",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "number",
+                    "paramViolations": 20,
+                    "between": {
+                        "min": 0,
+                        "max": 1200
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "name": "Ad allowed",
+                "description": "Are ads permitted in the video",
+                "optional": true,
+                "validation": {
+                    "isValidation": true,
+                    "type": "boolean",
+                    "paramViolations": 0
+                }
+            },
+            {
+                "id": 6,
+                "name": "Some custom validation",
+                "description": "Custom validation",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "custom",
+                    "regex": "[0-9A-Za-z]+",
+                    "paramViolations": 0
+                }
             }
         ]
     },
-    {}
+    {
+        "id": 2,
+        "title": "Video played",
+        "description": "Fired when a video is played, along with the details of the event",
+        "violations": 10,
+        "totalViolations": 1020,
+        "last": "Mon, 12 Apr 2021 16:57:55 GMT",
+        "params": [
+            {
+                "id": 7,
+                "name": "Title",
+                "description": "Add a description here",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "string",
+                    "paramViolations": 10,
+                    "predetermined": null,
+                    "custom": {
+                        "contains": null,
+                        "starts": null,
+                        "ends": null,
+                        "equals": null,
+                        "regex": {}
+                    }
+                }
+            },
+            {
+                "id": 8,
+                "name": "Description",
+                "description": "Add description",
+                "optional": true,
+                "validation": {
+                    "isValidation": false,
+                    "type": "string",
+                    "paramViolations": 10,
+                    "predetermined": null,
+                    "custom": null
+                }
+            },
+            {
+                "id": 9,
+                "name": "Duration",
+                "description": "Total length of the video in seconds",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "number",
+                    "paramViolations": 10,
+                    "between": {
+                        "min": 20,
+                        "max": 1200
+                    }
+                }
+            },
+            {
+                "id": 10,
+                "name": "Duration Played",
+                "description": "The total duration video played by user in seconds",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "number",
+                    "paramViolations": 20,
+                    "between": {
+                        "min": 0,
+                        "max": 1200
+                    }
+                }
+            },
+            {
+                "id": 11,
+                "name": "Ad allowed",
+                "description": "Are ads permitted in the video",
+                "optional": true,
+                "validation": {
+                    "isValidation": true,
+                    "type": "boolean"
+                }
+            },
+            {
+                "id": 12,
+                "name": "Some custom validation",
+                "description": "Custom validation",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "custom",
+                    "regex": {}
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Video played",
+        "description": "Fired when a video is played, along with the details of the event",
+        "violations": 10,
+        "totalViolations": 1020,
+        "last": "Mon, 12 Apr 2021 16:57:55 GMT",
+        "params": [
+            {
+                "id": 13,
+                "name": "Title",
+                "description": "Add a description here",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "string",
+                    "paramViolations": 10,
+                    "predetermined": null,
+                    "custom": {
+                        "contains": null,
+                        "starts": null,
+                        "ends": null,
+                        "equals": null,
+                        "regex": {}
+                    }
+                }
+            },
+            {
+                "id": 14,
+                "name": "Description",
+                "description": "Add description",
+                "optional": true,
+                "validation": {
+                    "isValidation": false,
+                    "type": "string",
+                    "paramViolations": 10,
+                    "predetermined": null,
+                    "custom": null
+                }
+            },
+            {
+                "id": 15,
+                "name": "Duration",
+                "description": "Total length of the video in seconds",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "number",
+                    "paramViolations": 10,
+                    "between": {
+                        "min": 20,
+                        "max": 1200
+                    }
+                }
+            },
+            {
+                "id": 16,
+                "name": "Duration Played",
+                "description": "The total duration video played by user in seconds",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "number",
+                    "paramViolations": 20,
+                    "between": {
+                        "min": 0,
+                        "max": 1200
+                    }
+                }
+            },
+            {
+                "id": 17,
+                "name": "Ad allowed",
+                "description": "Are ads permitted in the video",
+                "optional": true,
+                "validation": {
+                    "isValidation": true,
+                    "type": "boolean"
+                }
+            },
+            {
+                "id": 18,
+                "name": "Some custom validation",
+                "description": "Custom validation",
+                "optional": false,
+                "validation": {
+                    "isValidation": true,
+                    "type": "custom",
+                    "regex": {}
+                }
+            }
+        ]
+    }
 ]

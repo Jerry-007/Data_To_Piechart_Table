@@ -48,7 +48,7 @@ const initFormState: FormState = {
 	},
 };
 
-export const ExpandableEventRow: React.FC = () => {
+export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 	// state to control expansion of accordion
 	const [isExpanded, setExpanded] = useState(false);
 	// state of the height of the content of the accordion
@@ -80,7 +80,7 @@ export const ExpandableEventRow: React.FC = () => {
 
 	function onSubmit(e) {
 		e.preventDefault();
-		// get data and add it to the end of the list
+		//TODO: get data and add it to the state containing params
 		console.log(formState);
 	}
 
@@ -122,6 +122,70 @@ export const ExpandableEventRow: React.FC = () => {
 		}));
 	}
 
+	// calcuate time and return the respective string
+	function calculateTime(last) {
+		const diff = new Date().getTime() - new Date(last).getTime();
+		const secondsDifference = new Date(diff).getTime() / 1000;
+		const minutesDifference = secondsDifference / 60;
+		const hoursDifference = minutesDifference / 60;
+		if (parseInt(hoursDifference.toFixed(0)) == 0) {
+			if (parseInt(minutesDifference.toFixed(0)) == 0) {
+				return secondsDifference.toFixed(0) + " seconds ago";
+			}
+			return minutesDifference.toFixed(0) + " minutes ago";
+		}
+		return hoursDifference.toFixed(0) + " hours ago";
+	}
+
+	function genParamString(validation: any) {
+		let paramString = "No validation";
+
+		if (validation.type == "string") {
+			paramString = "Aa String";
+			if (validation.isValidation) {
+				if (validation.predetermined) {
+					paramString += ` ${validation.predetermined}`;
+				}
+
+				if (validation.custom) {
+					// add custom validation here
+					if (validation.custom["contains"]) {
+						paramString += ` Contains '${validation.custom.contains}'`;
+					} else if (validation.custom["starts"]) {
+						paramString += ` Starts ${validation.custom.starts}`;
+					} else if (validation.custom["ends"]) {
+						paramString += ` Ends ${validation.custom.ends}`;
+					} else if (validation.custom["equals"]) {
+						paramString += ` Equals ${validation.custom.equals}`;
+					} else if (validation.custom["regex"]) {
+						paramString += ` Regex ${validation.custom.regex}`;
+					}
+				}
+			}
+		} else if (validation.type == "number") {
+			paramString = "# Number";
+
+			// TODO: cover all the remaining edge cases of validation
+			if (validation["between"]) {
+				paramString += `( ${validation["between"].min} <= num <= ${validation["between"].max} )`;
+			}
+		} else if (validation.type == "boolean") {
+			paramString = "Boolean";
+		} else if (validation.type == "null") {
+			paramString = "null";
+		} else if (validation.type == "custom") {
+			paramString = "Custom";
+
+			if (validation.isValidation) {
+				paramString += ` Regex ${validation.regex}`;
+			}
+		} else if (validation.type == "array") {
+			paramString = "[] Array";
+		}
+
+		return paramString;
+	}
+
 	return (
 		<>
 			<tr>
@@ -130,11 +194,11 @@ export const ExpandableEventRow: React.FC = () => {
 						<ExpandIcon />
 					</div>
 				</OpenBox>
-				<TD>Video Played</TD>
-				<TD>Fired when a video is played, along with the details of the event</TD>
-				<TD>10</TD>
-				<TD>1020</TD>
-				<TD>2hrs ago</TD>
+				<TD>{data.title}</TD>
+				<TD>{data.description}</TD>
+				<TD>{data.violations}</TD>
+				<TD>{data.totalViolations}</TD>
+				<TD>{calculateTime(data.last)}</TD>
 			</tr>
 			<tr>
 				<TD isExpanded={isExpanded}></TD>
@@ -142,34 +206,16 @@ export const ExpandableEventRow: React.FC = () => {
 					<div style={{ maxHeight: `${height}`, overflow: "hidden" }} className={styles.expand}>
 						<Table borderless>
 							<tbody>
-								<TR>
-									<td>Title</td>
-									<td>Add a description here</td>
-									<td>{"# Number ( 0 < N < 100)"}</td>
-									<td>10</td>
-									<td>Optional</td>
-								</TR>
-								<TR>
-									<td>Description</td>
-									<td>Add a description here</td>
-									<td>{"aA Text"}</td>
-									<td>10</td>
-									<td>Optional</td>
-								</TR>
-								<TR>
-									<td>Duration</td>
-									<td>Add a description here</td>
-									<td>{"# Integer ( > 0 )"}</td>
-									<td>10</td>
-									<td>Optional</td>
-								</TR>
-								<TR>
-									<td>Duration played</td>
-									<td>Add a description here</td>
-									<td>{"aA Text"}</td>
-									<td>10</td>
-									<td>Optional</td>
-								</TR>
+								{/* TODO: creating the edit panel for a particular parameter */}
+								{data.params.map(param => (
+									<TR key={param.id}>
+										<td>{param.name}</td>
+										<td>{param.description}</td>
+										<td>{genParamString(param.validation)}</td>
+										<td>{param.validation.paramViolations}</td>
+										<td>{param.optional ? "Optional" : "Required"}</td>
+									</TR>
+								))}
 								<TR>
 									<td colSpan={5}>
 										<FormElement>
@@ -202,6 +248,7 @@ export const ExpandableEventRow: React.FC = () => {
 					</div>
 				</TD>
 			</tr>
+			{/* TODO: add event form */}
 		</>
 	);
 };
