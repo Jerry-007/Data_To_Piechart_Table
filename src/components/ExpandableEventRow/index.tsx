@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
 import { AddParameterForm } from "@components/AddParameterForm";
-import { TD, TR, OpenBox, FormElement, ButtonWrapper } from "../../styles/tableStyles";
+import { TD, TR, OpenBox, FormElement, ButtonWrapper } from "@styles/tableStyles";
 
 // structure of validation state
 export interface Validation {
@@ -50,17 +50,17 @@ const initFormState: FormState = {
 
 export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 	// state to control expansion of accordion
-	const [isExpanded, setExpanded] = useState(false);
+	const [isExpanded, setExpanded] = useState<boolean>(false);
 	// state of the height of the content of the accordion
-	const [height, setHeight] = useState("0px");
+	const [maxHeight, setMaxHeight] = useState<string>("0px");
 	// state of form being open or not
-	const [isFormOpen, setFormOpen] = useState(false);
+	const [isFormOpen, setFormOpen] = useState<boolean>(false);
 	// define form state
 	const [formState, setFormState] = useState<FormState>(initFormState);
 
 	function expand() {
 		setExpanded(val => !val);
-		setHeight(h => (h === "0px" ? "1000px" : "0px"));
+		setMaxHeight(h => (h === "0px" ? "1000px" : "0px"));
 		if (isFormOpen) {
 			setFormOpen(false);
 			setFormState(initFormState);
@@ -69,12 +69,12 @@ export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 
 	function clickOpenFormHandler() {
 		setFormOpen(true);
-		setHeight(h => parseInt(h.slice(0, h.length - 2)) + 200 + "px");
+		setMaxHeight(h => parseInt(h.slice(0, h.length - 2)) + 200 + "px");
 	}
 
 	function closeFormHandler() {
 		setFormOpen(false);
-		setHeight(h => parseInt(h.slice(0, h.length - 2)) - 200 + "px");
+		setMaxHeight(h => parseInt(h.slice(0, h.length - 2)) - 200 + "px");
 		setFormState(initFormState);
 	}
 
@@ -203,7 +203,7 @@ export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 			<tr>
 				<TD isExpanded={isExpanded}></TD>
 				<TD colSpan="5" isExpanded={isExpanded}>
-					<div style={{ maxHeight: `${height}`, overflow: "hidden" }} className={styles.expand}>
+					<div style={{ maxHeight: `${maxHeight}`, overflow: "hidden" }} className={styles.expand}>
 						<Table borderless>
 							<tbody>
 								{/* TODO: creating the edit panel for a particular parameter */}
