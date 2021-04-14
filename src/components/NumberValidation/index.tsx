@@ -85,7 +85,7 @@ export const NumberValidation: React.FC<{ validation: Validation; handleValidati
 					<Col>
 						<ChipInput
 							onAdd={chips => handleAdd(chips)}
-							value={validation.stringChips}
+							value={validation.numberChips}
 							classes={{
 								root: "form-control px-2",
 								helperText: "border-0",

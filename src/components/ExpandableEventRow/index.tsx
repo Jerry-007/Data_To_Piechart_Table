@@ -120,6 +120,13 @@ export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 	}
 
 	function handleValidationChange(e) {
+		if (e.target.name == "customType") {
+			return setFormState(prevState => ({
+				...prevState,
+				validation: { ...initFormState.validation, type: "custom", customType: e.target.value },
+			}));
+		}
+
 		setFormState(prevState => ({
 			...prevState,
 			validation: { ...prevState.validation, [e.target.name]: e.target.value },
@@ -169,7 +176,6 @@ export const ExpandableEventRow: React.FC<{ data: any }> = ({ data }) => {
 		} else if (validation.type == "number") {
 			paramString = "# Number";
 
-			// TODO: cover all the remaining edge cases of validation
 			if (validation["between"]) {
 				paramString += ` ( ${validation["between"].min} <= num <= ${validation["between"].max} )`;
 			} else if (validation["greater"]) {
