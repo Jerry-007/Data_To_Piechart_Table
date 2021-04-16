@@ -9,11 +9,11 @@ const NavBar: React.FC<{
   docked: boolean;
   setDocked: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ setSidebarOpen, docked, setDocked }): JSX.Element => {
+
   const isMidScreen = useMediaQuery({
     query: "(max-width: 576px)",
   });
 
-  console.log(isMidScreen);
   const showSidebar = () => {
     if (!isMidScreen) {
       setDocked(!docked);
@@ -25,7 +25,11 @@ const NavBar: React.FC<{
   return (
     <Navbar className={Styles.navbar} variant="light">
       <Navbar.Brand>
-        <Icon.List onClick={showSidebar} className={Styles.hamburger} size="1.7rem" />
+        <Icon.List
+          onClick={showSidebar}
+          className={Styles.hamburger}
+          size="1.7rem"
+        />
       </Navbar.Brand>
       <Nav className="ml-auto">
         <Nav.Item className={Styles.customnav}>

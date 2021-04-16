@@ -4,11 +4,11 @@ import Styles from "../../styles/sidebar.module.css";
 import * as Icon from "react-bootstrap-icons";
 
 const SideBar: React.FC<{
-  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
   sidebarOpen: boolean;
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
   docked: boolean;
   children: JSX.Element;
-}> = ({ setSidebarOpen, sidebarOpen, docked, children }): JSX.Element => {
+}> = ({ sidebarOpen, setSidebarOpen, docked, children }): JSX.Element => {
   //this const needed to fix a overlay bug
   // const styles = {
   //   root: {
