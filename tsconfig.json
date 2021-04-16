@@ -26,11 +26,9 @@
       "@interfaces/*": ["src/interfaces/*"],
       "@interfaces": ["src/interfaces"],
       "@components/icons/*": ["src/components/icons/*"],
-      "@components/icons": ["src/components/icons"],
-      "@data": ["src/interfaces/data"],
-      "@data/*": ["src/interfaces/data/*"]
+      "@components/icons": ["src/components/icons"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/sidebar/index.tsx", "src/components/sidebar/index.tsx"],
   "exclude": ["node_modules"]
 }

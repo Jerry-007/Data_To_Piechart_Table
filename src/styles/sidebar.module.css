@@ -1,0 +1,37 @@
+.sidebar{
+    visibility: visible;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    width: 219px;
+    height: 100vh;
+}
+.sidebar a{
+    text-align: center;
+    width: 219px;
+    height: 60px;
+    padding: 15px 0px;
+    color: white;
+}
+.sidebar a:hover{
+    background-color: aqua;
+    text-decoration: none;
+}
+.sidebar h5 {
+    color: white;
+    text-align: center;
+    padding: 1.08rem;
+}
+.burger{
+    background-color: black;
+    border: 0px;
+}
+@media (max-width: 576px) {
+    .sidebar{
+        width: 150px;
+    }
+    .sidebar a{
+        height: 50px;
+        width:150px
+    }
+}
