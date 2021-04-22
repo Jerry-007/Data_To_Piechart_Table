@@ -26,7 +26,9 @@
       "@interfaces/*": ["src/interfaces/*"],
       "@interfaces": ["src/interfaces"],
       "@components/icons/*": ["src/components/icons/*"],
-      "@components/icons": ["src/components/icons"]
+      "@components/icons": ["src/components/icons"],
+      "@data": ["src/interfaces/data"],
+      "@data/*": ["src/interfaces/data/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
