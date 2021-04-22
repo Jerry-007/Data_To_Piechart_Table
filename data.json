@@ -115,7 +115,7 @@
                         "starts": null,
                         "ends": null,
                         "equals": null,
-                        "regex": {}
+                        "regex": "\\w+"
                     }
                 }
             },
@@ -180,7 +180,7 @@
                 "validation": {
                     "isValidation": true,
                     "type": "custom",
-                    "regex": {}
+                    "regex": "[0-9A-Za-z]+"
                 }
             }
         ]
@@ -208,7 +208,7 @@
                         "starts": null,
                         "ends": null,
                         "equals": null,
-                        "regex": {}
+                        "regex": "\\w+"
                     }
                 }
             },
@@ -273,7 +273,7 @@
                 "validation": {
                     "isValidation": true,
                     "type": "custom",
-                    "regex": {}
+                    "regex": "[0-9A-Za-z]+"
                 }
             }
         ]
