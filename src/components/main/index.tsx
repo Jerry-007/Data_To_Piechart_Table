@@ -7,18 +7,10 @@ export const Main: React.FC = () => {
   return (
     <div className="text-center py-4" style={{ backgroundColor: "#282c34" }}>
       <Container>
-        <h1 className="display-2 text-white">superplate</h1>
+        <h1 className="display-2 text-white">Valley</h1>
         <p className="lead text-white">
-          The frontend boilerplate with superpowers!
+          Welcome to the Valley Frontpage.
         </p>
-        <Button
-          variant="primary"
-          size="lg"
-          href="https://pankod.github.io/superplate/"
-          target="_blank"
-        >
-          Docs
-        </Button>
       </Container>
     </div>
   );
