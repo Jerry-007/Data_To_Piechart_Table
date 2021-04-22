@@ -9,7 +9,6 @@ const NavBar: React.FC<{
   docked: boolean;
   setDocked: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ setSidebarOpen, docked, setDocked }): JSX.Element => {
-
   const isMidScreen = useMediaQuery({
     query: "(max-width: 576px)",
   });
@@ -34,7 +33,7 @@ const NavBar: React.FC<{
       <Nav className="ml-auto">
         <Nav.Item className={Styles.customnav}>
           <Nav.Link>
-            <Icon.Bell className="mr-4" size="1.5rem" />
+            <Icon.Bell className="mr-4" size="1.4rem" />
           </Nav.Link>
           <Nav.Link>
             <Dropdown style={{ height: "2rem" }}>
@@ -55,7 +54,7 @@ const NavBar: React.FC<{
                 <Dropdown.Item href="">Etc...</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          </Nav.Link>{" "}
+          </Nav.Link>
         </Nav.Item>
       </Nav>
     </Navbar>

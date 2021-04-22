@@ -1,7 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../src/styles/globals.css";
+import "@styles/globals.css";
 import Layout from "@components/layout";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {

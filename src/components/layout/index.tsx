@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState} from "react";
 import Sidebar from "@components/sidebar";
 import Navbar from "@components/navbar";
 import Main from "@components/main";
-import { useState } from "react";
 
 const Layout: React.FC<{ children: JSX.Element }> = ({
   children,
 }): JSX.Element => {
-  const [sidebarOpen, setSidebarOpen] = useState(false); //for the sidebar functionality
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [docked, setDocked] = useState(false);
+
   return (
     <Sidebar
       sidebarOpen={sidebarOpen}

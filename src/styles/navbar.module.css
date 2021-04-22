@@ -27,7 +27,7 @@
 }
 .dropdownmenu{
     max-width: 150px;
-    min-width: 100px;
+    min-width: 120px;
 }
 .avatar {
   height: 1.9rem;
@@ -38,11 +38,12 @@
   color: rgba(0,0,0,0.5);
   margin-left: 0.5rem;
   transition: 0.2s transform;
+  
 }
 .hamburger:hover{
   cursor:pointer;
-  transform: scale(1.2,1.2);
-  color: black;
+  transform: scale(1.15,1.15);
+  color: rgba(0,0,0,1);
 }
 @media (max-width: 575.98px) {
     .navbar{
