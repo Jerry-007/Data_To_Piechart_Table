@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Header, Main, Footer, Cards } from "@components";
 import {getUser} from "@data/user";
 

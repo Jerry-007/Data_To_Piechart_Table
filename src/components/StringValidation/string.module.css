@@ -1,0 +1,4 @@
+.d::before,
+.d::after {
+	content: none;
+}

@@ -1,0 +1,16 @@
+.expand {
+	transition: max-height 0.6s ease;
+}
+
+.icon {
+	transform: rotateZ(-90deg);
+	transition: all 0.6s ease;
+}
+
+.rotate {
+	transform: rotateZ(0deg);
+}
+
+.add {
+	cursor: pointer;
+}
