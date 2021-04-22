@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Col, FormGroup } from "react-bootstrap";
-import { Validation } from "../ExpandableEventRow";
+import { Validation } from "../expandableEventRow";
 import ChipInput from "material-ui-chip-input";
 
 export const NumberValidation: React.FC<{ validation: Validation; handleValidationChange: (event) => void }> = ({

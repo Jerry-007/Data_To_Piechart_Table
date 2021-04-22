@@ -1,4 +1,4 @@
-import { Validation } from "@components/ExpandableEventRow";
+import { Validation } from "@components/expandableEventRow";
 import React from "react";
 import { Form, Col, FormGroup } from "react-bootstrap";
 import ChipInput from "material-ui-chip-input";

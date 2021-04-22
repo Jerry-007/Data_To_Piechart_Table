@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, FormGroup, Col, InputGroup, Button } from "react-bootstrap";
-import { StringValidation } from "../StringValidation";
-import { NumberValidation } from "../NumberValidation";
-import { FormState } from "../ExpandableEventRow";
+import { StringValidation } from "../stringValidation";
+import { NumberValidation } from "../numberValidation";
+import { FormState } from "../expandableEventRow";
 
 export const AddParameterForm: React.FC<{
 	onSubmit: (event) => void;

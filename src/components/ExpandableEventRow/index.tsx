@@ -2,7 +2,7 @@ import { ExpandIcon } from "@components/icons/ExpandIcon";
 import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import styles from "./expanded.module.css";
-import { AddParameterForm } from "@components/AddParameterForm";
+import { AddParameterForm } from "@components/addParameterForm";
 import { TD, TR, OpenBox, FormElement, ButtonWrapper } from "@styles/tableStyles";
 
 // structure of validation state

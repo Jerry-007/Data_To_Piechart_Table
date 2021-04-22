@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ExpandableEventRow } from "@components/ExpandableEventRow";
+import { ExpandableEventRow } from "@components/expandableEventRow";
 import { CenterFlex, TableOuter, TableHeader, TableHeadItem } from "@styles/tableStyles";
 import data from "../../../data.json";
 
