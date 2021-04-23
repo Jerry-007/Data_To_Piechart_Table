@@ -1,17 +1,13 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
+import Styles from "../../styles/main.module.css";
 
-import { Button } from "@components";
-
-export const Main: React.FC = () => {
-  return (
-    <div className="text-center py-4" style={{ backgroundColor: "#282c34" }}>
-      <Container>
-        <h1 className="display-2 text-white">Valley</h1>
-        <p className="lead text-white">
-          Welcome to the Valley Frontpage.
-        </p>
-      </Container>
-    </div>
-  );
+const main1: React.FC<{ children: JSX.Element }> = ({
+  children,
+}): JSX.Element => {
+  return <Container className={Styles.main}>
+    {children}
+    </Container>;
 };
+
+export default main1;
