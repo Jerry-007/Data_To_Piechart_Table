@@ -24,20 +24,26 @@ const SideBar: React.FC<{
             </h5>
             <Link href="/">
               <a className={router.pathname === "/" ? Styles.active : ""}>
-                <SubtractIcon className="mr-1 mb-1" />
-                Home
+                <div>
+                  <SubtractIcon className="mr-2 mb-1" />
+                  Home
+                </div>
               </a>
             </Link>
             <Link href="/plans">
               <a className={router.pathname === "/plans" ? Styles.active : ""}>
-                <SubtractIcon className="mr-1 mb-1" />
-                Plans
+                <div>
+                  <SubtractIcon className="mr-2 mb-1" />
+                  Plans
+                </div>
               </a>
             </Link>
             <Link href="/about">
               <a className={router.pathname === "/about" ? Styles.active : ""}>
-                <SubtractIcon className="mr-1 mb-1" />
-                About
+                <div>
+                  <SubtractIcon className="mr-2 mb-1" />
+                  About
+                </div>
               </a>
             </Link>
           </div>

@@ -33,11 +33,11 @@ const NavBar: React.FC<{
       <Nav className="ml-auto">
         <Nav.Item className={Styles.customnav}>
           <Nav.Link>
-            <Icon.Bell className="mr-4" size="1.4rem" />
+            <Icon.Bell className="mr-4 mt-1" size="1.4rem" />
           </Nav.Link>
           <Nav.Link>
             <Dropdown style={{ height: "2rem" }}>
-              <Navbar.Text className="mr-2 p-0">Some name</Navbar.Text>
+              <Navbar.Text className={Styles.name}>Some name</Navbar.Text>
               <Figure>
                 <Figure.Image
                   className={Styles.avatar}

@@ -3,7 +3,7 @@ const SubtractIcon: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <svg
       className={className}
-      width="14"
+      width="13"
       height="13"
       viewBox="0 0 14 13"
       fill="none"

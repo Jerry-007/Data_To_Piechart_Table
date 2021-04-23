@@ -1,4 +1,6 @@
-body{
-    background-color: #e5e5e5;
-    scroll-padding: 5rem;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  background-color: #e5e5e5;
+  font-family: 'Poppins', sans-serif;
 }
