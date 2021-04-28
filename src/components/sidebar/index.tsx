@@ -19,7 +19,7 @@ const SideBar: React.FC<{
         sidebar={
           <div className={Styles.sidebar}>
             <h5>
-              <Logo />
+              <Logo className="mr-2"/>
               VALLEY
             </h5>
             <Link href="/">

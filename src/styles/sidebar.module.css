@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 .sidebar {
   background: #5f2eea;
   display: flex;
@@ -15,7 +16,7 @@
   border-left: 3px solid #5f2eea;
 }
 .sidebar a div {
-  margin-left: 30%;
+  margin-left: 31%;
 }
 .sidebar a:hover {
   border-left: 3px solid white;
@@ -27,13 +28,13 @@
   background-color: rgba(255, 255, 255, 0.22);
 }
 .sidebar h5 {
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   color: white;
-  margin-left: 21%;
+  margin-left: 20%;
   padding: 1rem 0rem;
 }
 .burger {
@@ -50,10 +51,10 @@
     width: 140px;
   }
   .sidebar a div {
-    margin-left: 20%;
+    margin-left: 23%;
   }
   .sidebar h5 {
-    margin-left: 7%;
+    margin-left: 5%;
     padding: 1rem 0rem;
   }
 }
