@@ -30,7 +30,7 @@ const Layout: React.FC<{ children: JSX.Element }> = ({
           docked={docked}
           setDocked={setDocked}
         />
-        <Main>{children}</Main>
+        {children}
       </>
     </Sidebar>
   );

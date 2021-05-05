@@ -38,6 +38,22 @@ const SideBar: React.FC<{
                 </div>
               </a>
             </Link>
+            <Link href="/connectors">
+              <a className={router.pathname === "/connectors" ? Styles.active : ""}>
+                <div>
+                  <SubtractIcon className="mr-2 mb-1" />
+                  Connectors
+                </div>
+              </a>
+            </Link>
+            <Link href="/faq">
+              <a className={router.pathname === "/faq" ? Styles.active : ""}>
+                <div>
+                  <SubtractIcon className="mr-2 mb-1" />
+                  How to ?
+                </div>
+              </a>
+            </Link>
             <Link href="/about">
               <a className={router.pathname === "/about" ? Styles.active : ""}>
                 <div>

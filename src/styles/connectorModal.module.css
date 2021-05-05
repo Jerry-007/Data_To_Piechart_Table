@@ -1,0 +1,13 @@
+.modalDialog {
+    min-width: 36rem;
+    zoom: 75%;
+  }
+  .modalContent {
+    padding: 1rem 3rem;
+  }
+  .modalLabel {
+    background-color: #e5e5e5;
+    padding: 1rem;
+    text-align: center;
+  }
+  

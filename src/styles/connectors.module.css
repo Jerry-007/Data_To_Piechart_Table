@@ -1,0 +1,23 @@
+.main {
+  margin: 2rem 0rem 0rem 1rem;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card {
+  width: 15rem;
+  margin: 0.5rem;
+  transition: 0.2s transform;
+}
+.card:hover {
+  border: 1px solid black;
+  transform: translateY(-6px);
+}
+.card img {
+  height: 3rem;
+  width: 3rem;
+  margin: auto;
+  margin-top: 1rem;
+}
