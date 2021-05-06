@@ -21,3 +21,13 @@
   margin: auto;
   margin-top: 1rem;
 }
+.cbutton {
+  position:absolute;
+  right: 0px;
+  background-color: #F4B740;
+  border: 0px;
+  width: 2rem;
+}
+.cbutton:hover {
+  background-color: #946200;
+}

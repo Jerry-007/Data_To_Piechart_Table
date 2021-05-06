@@ -4,7 +4,9 @@ import Connector from "@components/connector";
 
 const ConnectedConnectors: React.FC<{
   connectedInputs: any[];
-}> = ({ connectedInputs}): JSX.Element => {
+  editInput: (input) => void;
+  deleteInput: (id) => void;
+}> = ({ connectedInputs, editInput, deleteInput }): JSX.Element => {
   return (
     <div className="ml-5">
       <p className="mb-2 ml-3">Connected Inputs</p>
@@ -12,13 +14,13 @@ const ConnectedConnectors: React.FC<{
         {connectedInputs.map((c) => (
           <Connector
             key={c.id}
-            label={c.label}
+            id={c.id}
             type={c.type}
-            imgSrc={c.imgSrc}
-            description={c.description}
-            helpLink={c.helpLink}
             name={c.name}
             config={c.config}
+            editInput={editInput}
+            deleteInput={deleteInput}
+            action="edit"
           />
         ))}
       </div>

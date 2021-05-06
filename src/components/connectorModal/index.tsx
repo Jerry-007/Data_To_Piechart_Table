@@ -23,8 +23,23 @@ const ConnectorModal: React.FC<{
       region: string;
     };
   };
+  formFormat: any;
   addInput?: (input) => void;
-}> = ({ label, type, helpLink, show, handleClose, name, config, addInput }) => {
+  editInput?: (input) => void;
+  action: string;
+}> = ({
+  label,
+  type,
+  helpLink,
+  show,
+  handleClose,
+  name,
+  config,
+  formFormat,
+  addInput,
+  editInput,
+  action,
+}) => {
   const [check, setCheck] = useState(false);
   const [prod, setProd] = useState(false);
   const [dev, setDev] = useState(true);
@@ -41,7 +56,6 @@ const ConnectorModal: React.FC<{
 
   useEffect(() => {
     if (config) {
-      console.log(config);
       setP_AccountID(config.production.accountID);
       setP_Passcode(config.production.passcode);
       setP_Region(config.production.region);
@@ -54,13 +68,17 @@ const ConnectorModal: React.FC<{
     }
   }, []);
 
+  const data = [
+    { id: 1, p_token: "", d_token: "", label: "Token", name: "token" },
+    { id: 2, p_id: "", d_id: "", label: "AccoutnID" ,name:"id"},
+  ];
+  const [formData, setFormData] = useState(data);
+
   const submitted = (e) => {
     e.preventDefault();
     const data = {
       name: configName,
-      label: label,
-      helpLink: helpLink,
-      id: Math.random() * 100,
+      id: 333,
       type: type,
       config: {
         development: {
@@ -77,8 +95,20 @@ const ConnectorModal: React.FC<{
         },
       },
     };
-    addInput(data);
-    handleClose();
+    const anotherData = {
+      config: {
+        production: {},
+        development: {},
+      },
+    };
+    for (let i = 0; i < formData.length; i++) {
+      anotherData.config.production[`${formData[i].name}`] = (formData[i])[`p_${formData[i].name}`];
+      anotherData.config.development[`${formData[i].name}`] = (formData[i])[`d_${formData[i].name}`];
+    }
+    console.log(anotherData);
+    // if (action === "add") addInput(data);
+    // else editInput(data);
+    // handleClose();
   };
 
   return (
@@ -109,7 +139,7 @@ const ConnectorModal: React.FC<{
             />
           </Form.Group>
           <Form.Check
-            className="mb-2 ml-1 font-weight-bold"
+            className={Styles.checkbox}
             type="checkbox"
             checked={check}
             onChange={() => setCheck(!check)}
@@ -143,6 +173,35 @@ const ConnectorModal: React.FC<{
               />
             </div>
           )}
+          {formData.map((f) => (
+            <Form.Group>
+              <Form.Label>{f.label}</Form.Label>
+              <Form.Control
+                value={!check && prod ? f[`p_${f.name}`] : f[`d_${f.name}`]}
+                onChange={(e) => {
+                  console.log(formData);
+                  if (check) {
+                    const index = formData.findIndex((i) => i.id === f.id);
+                    const newState = [...formData];
+                    newState[index][`p_${f.name}`] = e.target.value;
+                    setFormData(newState);
+                  }
+                  if (!check && prod) {
+                    const index = formData.findIndex((i) => i.id === f.id);
+                    const newState = [...formData];
+                    newState[index][`p_${f.name}`] = e.target.value;
+                    setFormData(newState);
+                  } else {
+                    const index = formData.findIndex((i) => i.id === f.id);
+                    const newState = [...formData];
+                    newState[index][`d_${f.name}`] = e.target.value;
+                    setFormData(newState);
+                  }
+                }}
+                type="text"
+              />
+            </Form.Group>
+          ))}
           <Form.Group>
             <Form.Label>Account ID</Form.Label>
             <Form.Control

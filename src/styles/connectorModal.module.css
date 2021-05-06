@@ -1,13 +1,20 @@
 .modalDialog {
-    min-width: 36rem;
-    zoom: 75%;
-  }
-  .modalContent {
-    padding: 1rem 3rem;
-  }
-  .modalLabel {
-    background-color: #e5e5e5;
-    padding: 1rem;
-    text-align: center;
-  }
-  
+  min-width: 36rem;
+  zoom: 75%;
+}
+.modalContent {
+  padding: 1rem 3rem;
+}
+.modalLabel {
+  background-color: #e5e5e5;
+  padding: 1rem;
+  text-align: center;
+}
+.checkbox {
+  font-weight: bold;
+  margin: 0.5rem 0.2rem;
+}
+.checkbox input {
+  height: 0.92rem;
+  width: 1rem;
+}
