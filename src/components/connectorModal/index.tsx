@@ -68,42 +68,49 @@ const ConnectorModal: React.FC<{
     }
   }, []);
 
+
+  
   const data = [
     { id: 1, p_token: "", d_token: "", label: "Token", name: "token" },
-    { id: 2, p_id: "", d_id: "", label: "AccoutnID" ,name:"id"},
+    { id: 2, p_id: "", d_id: "", label: "AccoutnID", name: "id" },
   ];
   const [formData, setFormData] = useState(data);
 
   const submitted = (e) => {
     e.preventDefault();
-    const data = {
+    // const data = {
+    //   name: configName,
+    //   id: 333,
+    //   type: type,
+    //   config: {
+    //     development: {
+    //       accountID: d_AccountID,
+    //       passcode: d_Passcode,
+    //       accessToken: d_Token,
+    //       region: d_Region,
+    //     },
+    //     production: {
+    //       accountID: p_AccountID,
+    //       passcode: p_Passcode,
+    //       accessToken: p_Token,
+    //       region: p_Region,
+    //     },
+    //   },
+    // };
+    const anotherData = {
       name: configName,
       id: 333,
       type: type,
-      config: {
-        development: {
-          accountID: d_AccountID,
-          passcode: d_Passcode,
-          accessToken: d_Token,
-          region: d_Region,
-        },
-        production: {
-          accountID: p_AccountID,
-          passcode: p_Passcode,
-          accessToken: p_Token,
-          region: p_Region,
-        },
-      },
-    };
-    const anotherData = {
       config: {
         production: {},
         development: {},
       },
     };
     for (let i = 0; i < formData.length; i++) {
-      anotherData.config.production[`${formData[i].name}`] = (formData[i])[`p_${formData[i].name}`];
-      anotherData.config.development[`${formData[i].name}`] = (formData[i])[`d_${formData[i].name}`];
+      anotherData.config.production[`${formData[i].name}`] =
+        formData[i][`p_${formData[i].name}`];
+      anotherData.config.development[`${formData[i].name}`] =
+        formData[i][`d_${formData[i].name}`];
     }
     console.log(anotherData);
     // if (action === "add") addInput(data);
