@@ -23,7 +23,7 @@ const ConnectorModal: React.FC<{
       region: string;
     };
   };
-  formFormat: any;
+  formFormat: any[];
   addInput?: (input) => void;
   editInput?: (input) => void;
   action: string;
@@ -43,61 +43,47 @@ const ConnectorModal: React.FC<{
   const [check, setCheck] = useState(false);
   const [prod, setProd] = useState(false);
   const [dev, setDev] = useState(true);
-
   const [configName, setConfigName] = useState(name || "");
-  const [p_AccountID, setP_AccountID] = useState("");
-  const [p_Passcode, setP_Passcode] = useState("");
-  const [p_Token, setP_Token] = useState("");
-  const [p_Region, setP_Region] = useState("");
-  const [d_AccountID, setD_AccountID] = useState("");
-  const [d_Passcode, setD_Passcode] = useState("");
-  const [d_Token, setD_Token] = useState("");
-  const [d_Region, setD_Region] = useState("");
+
+  const [formData, setFormData] = useState([]);
 
   useEffect(() => {
+    let initialState = [];
     if (config) {
-      setP_AccountID(config.production.accountID);
-      setP_Passcode(config.production.passcode);
-      setP_Region(config.production.region);
-      setP_Token(config.production.accessToken);
-
-      setD_Passcode(config.development.passcode);
-      setD_AccountID(config.development.accountID);
-      setD_Region(config.development.region);
-      setD_Token(config.development.accessToken);
+      for (let i = 0; i < formFormat.length; i++) {
+        const d_var = `d_${formFormat[i].name}`;
+        const p_var = `p_${formFormat[i].name}`;
+        initialState.push({
+          name: formFormat[i].name,
+          type: formFormat[i].type,
+          required: formFormat[i].required,
+          [d_var]: config["development"][`${formFormat[i].name}`],
+          [p_var]: config["production"][`${formFormat[i].name}`],
+          label: formFormat[i].label,
+          id: i,
+        });
+      }
+    } else {
+      for (let i = 0; i < formFormat.length; i++) {
+        const d_var = `d_${formFormat[i].name}`;
+        const p_var = `p_${formFormat[i].name}`;
+        initialState.push({
+          name: formFormat[i].name,
+          type: formFormat[i].type,
+          required: formFormat[i].required,
+          [d_var]: "",
+          [p_var]: "",
+          label: formFormat[i].label,
+          id: i,
+        });
+      }
     }
+    setFormData(initialState);
   }, []);
-
-
-  
-  const data = [
-    { id: 1, p_token: "", d_token: "", label: "Token", name: "token" },
-    { id: 2, p_id: "", d_id: "", label: "AccoutnID", name: "id" },
-  ];
-  const [formData, setFormData] = useState(data);
 
   const submitted = (e) => {
     e.preventDefault();
-    // const data = {
-    //   name: configName,
-    //   id: 333,
-    //   type: type,
-    //   config: {
-    //     development: {
-    //       accountID: d_AccountID,
-    //       passcode: d_Passcode,
-    //       accessToken: d_Token,
-    //       region: d_Region,
-    //     },
-    //     production: {
-    //       accountID: p_AccountID,
-    //       passcode: p_Passcode,
-    //       accessToken: p_Token,
-    //       region: p_Region,
-    //     },
-    //   },
-    // };
-    const anotherData = {
+    const result = {
       name: configName,
       id: 333,
       type: type,
@@ -107,15 +93,15 @@ const ConnectorModal: React.FC<{
       },
     };
     for (let i = 0; i < formData.length; i++) {
-      anotherData.config.production[`${formData[i].name}`] =
+      result.config.production[`${formData[i].name}`] =
         formData[i][`p_${formData[i].name}`];
-      anotherData.config.development[`${formData[i].name}`] =
+      result.config.development[`${formData[i].name}`] =
         formData[i][`d_${formData[i].name}`];
     }
-    console.log(anotherData);
-    // if (action === "add") addInput(data);
-    // else editInput(data);
-    // handleClose();
+    console.log(result);
+    if (action === "add") addInput(result);
+    else editInput(result);
+    handleClose();
   };
 
   return (
@@ -135,11 +121,12 @@ const ConnectorModal: React.FC<{
         <div className="text-right mt-1 mb-2">
           Need Help? <a href={helpLink}>Check out the docs</a>
         </div>
+
         <Form id="connectorInfo" onSubmit={submitted}>
           <Form.Group>
             <Form.Label>Configuration Name</Form.Label>
             <Form.Control
-              required
+              required={true}
               value={configName}
               onChange={(e) => setConfigName(e.target.value)}
               type="text"
@@ -181,12 +168,13 @@ const ConnectorModal: React.FC<{
             </div>
           )}
           {formData.map((f) => (
-            <Form.Group>
+            <Form.Group key={f.id}>
               <Form.Label>{f.label}</Form.Label>
               <Form.Control
+                required={f.required ? true : false}
                 value={!check && prod ? f[`p_${f.name}`] : f[`d_${f.name}`]}
+                type={f.type}
                 onChange={(e) => {
-                  console.log(formData);
                   if (check) {
                     const index = formData.findIndex((i) => i.id === f.id);
                     const newState = [...formData];
@@ -205,62 +193,9 @@ const ConnectorModal: React.FC<{
                     setFormData(newState);
                   }
                 }}
-                type="text"
               />
             </Form.Group>
           ))}
-          <Form.Group>
-            <Form.Label>Account ID</Form.Label>
-            <Form.Control
-              required
-              value={!check && prod ? p_AccountID : d_AccountID}
-              onChange={(e) => {
-                if (check) setP_AccountID(e.target.value);
-
-                if (!check && prod) setP_AccountID(e.target.value);
-                else setD_AccountID(e.target.value);
-              }}
-              type="id"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Passcode</Form.Label>
-            <Form.Control
-              required
-              value={!check && prod ? p_Passcode : d_Passcode}
-              onChange={(e) => {
-                if (check) setP_Passcode(e.target.value);
-                if (!check && prod) setP_Passcode(e.target.value);
-                else setD_Passcode(e.target.value);
-              }}
-              type="password"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Account Token</Form.Label>
-            <Form.Control
-              required
-              value={!check && prod ? p_Token : d_Token}
-              onChange={(e) => {
-                if (check) setP_Token(e.target.value);
-                if (!check && prod) setP_Token(e.target.value);
-                else setD_Token(e.target.value);
-              }}
-              type="text"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Region</Form.Label>
-            <Form.Control
-              value={!check && prod ? p_Region : d_Region}
-              onChange={(e) => {
-                if (check) setP_Region(e.target.value);
-                if (!check && prod) setP_Region(e.target.value);
-                else setD_Region(e.target.value);
-              }}
-              type="text"
-            />
-          </Form.Group>
         </Form>
       </Modal.Body>
       <Container className="p-0">

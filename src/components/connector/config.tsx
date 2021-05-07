@@ -9,8 +9,10 @@ const connectorsConfig = [
     disable: false,
     form: [
       {
-        label: "token",
+        name: "accessToken",
+        label: "Token",
         type: "string",
+        required: true,
       },
     ],
   },
@@ -24,22 +26,26 @@ const connectorsConfig = [
     disable: false,
     form: [
       {
+        name: "accountID",
         label: "AccountID",
         type: "id",
         required: true,
       },
       {
-        label: "PassCode",
+        name: "passcode",
+        label: "Passcode",
         type: "password",
         required: true,
       },
       {
-        label: "token",
+        name: "acessToken",
+        label: "Token",
         type: "text",
         required: true,
       },
       {
-        label: "region",
+        name: "region",
+        label: "Region",
         type: "string",
         required: false,
       },
@@ -53,7 +59,7 @@ const connectorsConfig = [
     helpLink: "",
     description: "Coming soon",
     disable: true,
-    form:[]
+    form: [],
   },
 ];
 
