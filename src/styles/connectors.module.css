@@ -7,19 +7,16 @@
   flex-wrap: wrap;
 }
 .card {
-  width: 15rem;
-  margin: 0.5rem;
+  height: 9rem;
+  width: 12rem;
+  margin: 0.6rem;
+  /* box-shadow: 0px 0px 1px 0.1px black; */
   transition: 0.2s transform;
 }
 .card:hover {
   border: 1px solid black;
-  transform: translateY(-6px);
-}
-.card img {
-  height: 3rem;
-  width: 3rem;
-  margin: auto;
-  margin-top: 1rem;
+  /* box-shadow: 1px 2px 4px black; */
+  transform:translate3d(0,-6px,0);
 }
 .cbutton {
   position: absolute;
@@ -28,11 +25,32 @@
   border: 0px;
   width: 2rem;
 }
-.cbutton:active{
-  background-color: #f4b740 !important;
-  box-shadow: none!important;
-}
 .cbutton:hover {
   background-color: #946200;
   box-shadow: none;
+}
+.cbutton:focus-within {
+  background-color: #f4b740 !important;
+  box-shadow: none !important;
+}
+.description {
+  position: absolute;
+  font-size: 0.7rem;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  text-align: center;
+}
+.envLabel{
+  font-size: 0.6rem;
+  font-weight: bold;
+  background-color: #f3f3f3;
+  color:#00d100;
+  padding:0.3rem;
+  border-radius: 1rem;
+  margin: 0rem 0.5rem 0rem 0.5rem;
+}
+.labelImg{
+  height: 2.2rem;
+  width: 9rem;
 }

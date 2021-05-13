@@ -1,10 +1,11 @@
-const connectorsConfig = [
-  {
+const connectorsConfig = {
+  google_analytic: {
     id: 1,
     label: "Google Analytics",
     type: "google_analytic",
-    imgSrc: "",
-    helpLink: "",
+    cardImgSrc: "/static/googleAnalyticsModal.svg",
+    modalImgSrc: "/static/googleAnalyticsModal.svg",
+    helpLink: "https://developers.google.com/analytics",
     description: "",
     disable: false,
     form: [
@@ -16,12 +17,13 @@ const connectorsConfig = [
       },
     ],
   },
-  {
+  clevertap: {
     id: 2,
     label: "Clevertap",
     type: "clevertap",
-    imgSrc: "",
-    helpLink: "",
+    cardImgSrc: "/static/clevertapLogo.svg",
+    modalImgSrc: "/static/clevertapLogo.svg",
+    helpLink: "https://developer.clevertap.com/docs/getting-started",
     description: "",
     disable: false,
     form: [
@@ -51,16 +53,17 @@ const connectorsConfig = [
       },
     ],
   },
-  {
+  mixpanel: {
     id: 3,
-    label: "Some other",
-    type: "other",
-    imgSrc: "",
-    helpLink: "",
+    label: "Mixpanel",
+    type: "mixpanel",
+    cardImgSrc: "/static/mixpanel.svg",
+    modalImgSrc: "/static/mixpanel.svg",
+    helpLink: "https://help.mixpanel.com/hc/en-us/sections/360004828411-Developer-Documentation",
     description: "Coming soon",
     disable: true,
     form: [],
   },
-];
+};
 
 export default connectorsConfig;

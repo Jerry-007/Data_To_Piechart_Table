@@ -1,0 +1,32 @@
+.alertbox {
+  z-index: 3;
+  color: white;
+  width: 16rem;
+  position: absolute;
+  right: 1rem;
+  top: 3.6rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.alertbox button {
+  height: 36px;
+  width: 36px;
+  min-width: 36px;
+  margin-right: 0.8rem;
+  background-color: white;
+  color: black;
+  border: 0px;
+  border-radius: 50%;
+  font-weight: bolder;
+  transition: 0.2s;
+}
+.alertbox button:hover{
+    background-color: white;
+    color: black;
+    transform: scale(1.1212,1.1212)
+}
+.alertbox button:focus-within{
+    background-color: white !important;
+    box-shadow: none !important;
+}

@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import Styles from "@styles/connectors.module.css";
 import ConnectorModal from "@components/connectorModal";
 import connectorsConfig from "./config";
+import Prompt from "@components/prompt";
 
 const Connector: React.FC<{
   id: number;
@@ -38,6 +39,7 @@ const Connector: React.FC<{
   action,
   disable,
 }): JSX.Element => {
+  const [showPrompt, setShowPrompt] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -45,21 +47,37 @@ const Connector: React.FC<{
     setShow(true);
   };
 
+  const closePrompt = () => {
+    setShowPrompt(false);
+  };
+
   let connectorDetails: any = {};
-  for (let i = 0; i < connectorsConfig.length; i++) {
-    if (connectorsConfig[i].type === type) {
-      connectorDetails = connectorsConfig[i];
+  for (const key in connectorsConfig) {
+    if (connectorsConfig[key].type === type) {
+      connectorDetails = connectorsConfig[key];
       break;
     }
   }
   return (
     <>
+      {showPrompt ? (
+        <Prompt
+          show={showPrompt}
+          handleClose={closePrompt}
+          message="Are you sure you want to delete this ?"
+          execute={() => {
+            deleteInput(id);
+          }}
+        />
+      ) : (
+        ""
+      )}
       <Card className={Styles.card} onClick={handleShow}>
         {action !== "add" ? (
           <Button
             className={Styles.cbutton}
             onClick={(event) => {
-              deleteInput(id);
+              setShowPrompt(true);
               event.stopPropagation();
             }}
           >
@@ -68,23 +86,47 @@ const Connector: React.FC<{
         ) : (
           ""
         )}
-        <Card.Img variant="top" src={connectorDetails.imgSrc} />
-        <Card.Body>
-          <Card.Title className="text-center">
+        <Card.Body className="d-flex justify-content-center align-items-center">
+          <Card.Img
+            className={Styles.labelImg}
+            src={connectorDetails.cardImgSrc}
+            alt={connectorDetails.label}
+          />
+          {/* <Card.Title className="text-center">
             {connectorDetails.label}
-          </Card.Title>
-          <Card.Text className="text-center" style={{ fontSize: "0.7rem" }}>
+          </Card.Title> */}
+          <Card.Text className={Styles.description}>
             {connectorDetails.description}
+            {config ? (
+              config.production.accessToken !== "" ? (
+                <span className={Styles.envLabel}>PROD</span>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
+            {config ? (
+              config.development.accessToken !== "" ? (
+                <span className={Styles.envLabel}>DEV</span>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
           </Card.Text>
         </Card.Body>
       </Card>
       <ConnectorModal
-        label={connectorDetails.label}
+        id={id}
         type={type}
-        helpLink={connectorDetails.helpLink}
         name={name}
         config={config}
+        label={connectorDetails.label}
+        modalImgSrc={connectorDetails.modalImgSrc}
         formFormat={connectorDetails.form}
+        helpLink={connectorDetails.helpLink}
         show={show}
         handleClose={handleClose}
         addInput={addInput}

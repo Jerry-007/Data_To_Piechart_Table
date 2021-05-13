@@ -3,7 +3,9 @@ import { Modal, Form, Button, Container } from "react-bootstrap";
 import Styles from "@styles/connectorModal.module.css";
 
 const ConnectorModal: React.FC<{
+  id: number;
   label: string;
+  modalImgSrc: string;
   type: string;
   helpLink: string;
   show: boolean;
@@ -28,7 +30,9 @@ const ConnectorModal: React.FC<{
   editInput?: (input) => void;
   action: string;
 }> = ({
+  id,
   label,
+  modalImgSrc,
   type,
   helpLink,
   show,
@@ -48,7 +52,7 @@ const ConnectorModal: React.FC<{
   const [formData, setFormData] = useState([]);
 
   useEffect(() => {
-    let initialState = [];
+    const initialState = [];
     if (config) {
       for (let i = 0; i < formFormat.length; i++) {
         const d_var = `d_${formFormat[i].name}`;
@@ -85,7 +89,7 @@ const ConnectorModal: React.FC<{
     e.preventDefault();
     const result = {
       name: configName,
-      id: 333,
+      id: id,
       type: type,
       config: {
         production: {},
@@ -98,9 +102,26 @@ const ConnectorModal: React.FC<{
       result.config.development[`${formData[i].name}`] =
         formData[i][`d_${formData[i].name}`];
     }
-    console.log(result);
     if (action === "add") addInput(result);
     else editInput(result);
+
+    const initialState = [];
+    for (let i = 0; i < formFormat.length; i++) {
+      const d_var = `d_${formFormat[i].name}`;
+      const p_var = `p_${formFormat[i].name}`;
+      initialState.push({
+        name: formFormat[i].name,
+        type: formFormat[i].type,
+        required: formFormat[i].required,
+        [d_var]: "",
+        [p_var]: "",
+        label: formFormat[i].label,
+        id: i,
+      });
+    }
+    setFormData(initialState);
+    setConfigName("");
+
     handleClose();
   };
 
@@ -117,11 +138,15 @@ const ConnectorModal: React.FC<{
         <h6 className="font-weight-bold ml-4 mb-0 mt-1">Event Configuration</h6>
       </Modal.Header>
       <Modal.Body className={Styles.modalContent}>
-        <div className={Styles.modalLabel}>{label}</div>
-        <div className="text-right mt-1 mb-2">
-          Need Help? <a href={helpLink}>Check out the docs</a>
+        <div className={Styles.modalLabel}>
+          <img src={modalImgSrc} alt={label} />
         </div>
-
+        <div className="text-right mt-2 mb-2">
+          Need Help?{" "}
+          <a href={helpLink} target="_blank">
+            Check out the docs
+          </a>
+        </div>
         <Form id="connectorInfo" onSubmit={submitted}>
           <Form.Group>
             <Form.Label>Configuration Name</Form.Label>

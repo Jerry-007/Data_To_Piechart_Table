@@ -23,6 +23,7 @@
     "react-bootstrap": "^1.4.3",
     "react-bootstrap-icons": "^1.4.0",
     "react-dom": "^0.0.0-78120032d",
+    "react-markdown": "^6.0.2",
     "react-responsive": "^8.2.0",
     "react-sidebar": "^3.0.2",
     "styled-components": "^5.2.1",
