@@ -1,8 +1,9 @@
-how to 1.?
-This way 1.=>
+#### FAQ
+Q.1 How to 1?  
+Ans. This way =>
 
-how to 2.?
-This way 2.=>
+Q.2 How to 2?  
+Ans. This way =>
 
-how to 3.?
-This way 3.=>
+Q.3 How to 3?  
+Ans. This way =>
