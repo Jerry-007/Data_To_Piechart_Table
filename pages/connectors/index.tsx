@@ -23,24 +23,43 @@ const Connectors: React.FC = (): JSX.Element => {
   const addInput = async (input) => {
     try {
       const res = await axios.post("http://localhost:5000", input);
-      setShowAlert({ show: true, variant: "success", message: "Added Successfully" });
-      window.location.reload();
+      setShowAlert({
+        show: true,
+        variant: "success",
+        message: "Added Successfully",
+      });
+      setConnectedInputs([...connectedInputs, res.data]);
+      // window.location.reload();
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setShowAlert({ show: true, variant: "error", message: err.message });
     }
   };
   const editInput = async (input) => {
     try {
-      await axios.post("http://localhost:5000/edit", input);
-      window.location.reload();
+      const res = await axios.post("http://localhost:5000/edit", input);
+      // window.location.reload();
+      setConnectedInputs([...connectedInputs, res.data]);
     } catch (err) {
       alert(err);
     }
   };
   const deleteInput = async (id) => {
-    await axios.delete(`http://localhost:5000/${id}`);
-    window.location.reload();
+    const res = await axios.delete(`http://localhost:5000/${id}`);
+    if (res.data.deleted === true) {
+      setConnectedInputs(connectedInputs.filter((d) => d.id !== Number(id)));
+      setShowAlert({
+        show: true,
+        variant: "success",
+        message: "Deleted Successfully",
+      });
+    } else
+      setShowAlert({
+        show: true,
+        variant: "error",
+        message: res.data.message,
+      });
+    // window.location.reload();
   };
 
   return (

@@ -6,7 +6,7 @@ const Prompt: React.FC<{
   handleClose: () => void;
   message: string;
   execute?: () => void;
-}> = ({ show, handleClose, message ,execute}) => {
+}> = ({ show, handleClose, message, execute }) => {
   return (
     <Modal
       dialogClassName={Styles.prompt}
@@ -26,7 +26,10 @@ const Prompt: React.FC<{
         <Button
           variant="primary"
           className="w-50 rounded-0 btn-sm"
-          onClick={execute}
+          onClick={() => {
+            execute();
+            handleClose();
+          }}
         >
           Confirm
         </Button>
