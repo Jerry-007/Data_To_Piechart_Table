@@ -12,6 +12,14 @@ const SideBar: React.FC<{
   docked: boolean;
   children: JSX.Element;
 }> = ({ sidebarOpen, setSidebarOpen, docked, children }): JSX.Element => {
+  const sidebarItems = [
+    { name: "Home", path: "/" },
+    { name: "Plans", path: "/plans" },
+    { name: "Connectors", path: "/connectors" },
+    { name: "Integrations", path: "/integrations" },
+    { name: "How to ?", path: "/faq" },
+    { name: "About", path: "/about" },
+  ];
   const router = useRouter();
   return (
     <>
@@ -19,10 +27,20 @@ const SideBar: React.FC<{
         sidebar={
           <div className={Styles.sidebar}>
             <h5>
-              <Logo className="mr-2"/>
+              <Logo className="mr-2" />
               VALLEY
             </h5>
-            <Link href="/">
+            {sidebarItems.map((i) => (
+              <Link href={i.path}>
+                <a className={router.pathname === i.path ? Styles.active : ""}>
+                  <div>
+                    <SubtractIcon className="mr-2 mb-1" />
+                    {i.name}
+                  </div>
+                </a>
+              </Link>
+            ))}
+            {/* <Link href="/">
               <a className={router.pathname === "/" ? Styles.active : ""}>
                 <div>
                   <SubtractIcon className="mr-2 mb-1" />
@@ -39,7 +57,11 @@ const SideBar: React.FC<{
               </a>
             </Link>
             <Link href="/connectors">
-              <a className={router.pathname === "/connectors" ? Styles.active : ""}>
+              <a
+                className={
+                  router.pathname === "/connectors" ? Styles.active : ""
+                }
+              >
                 <div>
                   <SubtractIcon className="mr-2 mb-1" />
                   Connectors
@@ -61,7 +83,7 @@ const SideBar: React.FC<{
                   About
                 </div>
               </a>
-            </Link>
+            </Link> */}
           </div>
         }
         open={sidebarOpen}

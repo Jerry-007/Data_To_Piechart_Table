@@ -1,0 +1,12 @@
+.modal {
+  background-color: #00000055;
+}
+.dialogbox {
+  position: relative;
+  top: 3rem;
+  zoom: 80%;
+}
+.dialogBody {
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}

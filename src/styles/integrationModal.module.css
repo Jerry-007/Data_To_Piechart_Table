@@ -1,0 +1,33 @@
+.dialogbox {
+  min-width: 50rem;
+  zoom: 90%;
+}
+.modalButton {
+  display: block;
+  margin-top: 3rem;
+  background-color: #00966dbb;
+  border: 0px;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  margin-left: auto;
+  transition: 0.2s;
+}
+.modalButton:hover {
+  background-color: #00966dbb;
+  transform: scale(1.059, 1.059);
+}
+.modalButton:active {
+  background-color: #00966dff !important;
+  box-shadow: none !important;
+}
+.modalButton:focus-within {
+  background-color: #00966dbb;
+  box-shadow: none;
+}
+.checkbox input {
+  height: 0.92rem;
+  width: 1rem;
+}
+.multiSelect {
+  margin-top: 0.5rem;
+}
