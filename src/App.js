@@ -51,7 +51,7 @@ function App() {
   return (
     <Router>
       <Route path="/" exact>
-        <h3 className="fs-2 text-center mb-4">Valley</h3>
+        <h3 className="fs-2 text-center mb-4">Represent data in the form of pie chart and table</h3>
         <div className="d-flex justify-content-center">
           <button
             type="button"
@@ -60,7 +60,7 @@ function App() {
               setShowtab1(!showtab1);
             }}
           >
-            TAB 1
+            Show table
           </button>
           <button
             type="button"
@@ -69,7 +69,7 @@ function App() {
               setShowtab2(!showtab2);
             }}
           >
-            TAB 2
+            Show pie chart
           </button>
         </div>
         <div className="d-flex flex-wrap">
